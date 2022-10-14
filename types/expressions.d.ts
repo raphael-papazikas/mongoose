@@ -1130,6 +1130,27 @@ declare module 'mongoose' {
       }
     }
 
+    export interface SortArray {
+      /**
+       * Sorts an array based on its elements. The sort order is user specified.
+       *
+       * @version 5.2
+       * @see https://www.mongodb.com/docs/manual/reference/operator/aggregation/sortArray/#mongodb-expression-exp.-sortArray
+       */
+      $sortArray: {
+        /**
+         * An expression that resolves to an array.
+         */
+        input: ArrayExpression,
+
+        /**
+         * If the array elements are documents, you can sort by a document field. Specify the field name and a sort direction, ascending (1), or descending (-1 ).
+         * To sort the whole array by value, or to sort by array elements that are not documents, identify the input array and specify 1 for an ascending sort or -1 for descending sort in the sortBy parameter.
+         */
+        sortBy: SortByFields | (1 | -1),
+      }
+    }
+
     export interface First {
       /**
        * Returns the first array element. Distinct from $first accumulator.
@@ -2318,7 +2339,7 @@ declare module 'mongoose' {
 
     export interface Top {
       $top: {
-        sortBy: AnyObject,
+        sortBy: SortByFields,
         output: Expression
       };
     }
@@ -2326,7 +2347,7 @@ declare module 'mongoose' {
     export interface TopN {
       $topN: {
         n: Expression,
-        sortBy: AnyObject,
+        sortBy: SortByFields,
         output: Expression
       };
     }
@@ -2580,6 +2601,7 @@ declare module 'mongoose' {
     Expression.Range |
     Expression.ReverseArray |
     Expression.Slice |
+    Expression.SortArray |
     Expression.Zip;
 
   export type ArrayExpressionOperatorReturningNumber =

@@ -233,7 +233,7 @@ declare module 'mongoose' {
       /** [`$setWindowFields` reference](https://docs.mongodb.com/manual/reference/operator/aggregation/setWindowFields/) */
       $setWindowFields: {
         partitionBy?: any
-        sortBy?: Record<string, 1 | -1>
+        sortBy?: SortByFields
         output: Record<
         string,
         WindowOperator & {

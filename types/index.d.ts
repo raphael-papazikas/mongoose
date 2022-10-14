@@ -463,6 +463,8 @@ declare module 'mongoose' {
 
   export type SortOrder = -1 | 1 | 'asc' | 'ascending' | 'desc' | 'descending';
 
+  export type SortByFields = Record<string, -1 | 1>;
+
   type _UpdateQuery<TSchema> = {
     /** @see https://docs.mongodb.com/manual/reference/operator/update-field/ */
     $currentDate?: AnyKeys<TSchema> & AnyObject;

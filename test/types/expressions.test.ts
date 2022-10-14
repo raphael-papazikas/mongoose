@@ -205,6 +205,20 @@ const switchExpr: Expression.Switch = {
   }
 };
 
+const sortArrayByDocumentFieldsExpr: Expression = {
+  $sortArray: {
+    input: '$team',
+    sortBy: { name: 1 }
+  }
+};
+
+const sortArrayByValueExpr: Expression = {
+  $sortArray: {
+    input: '$team',
+    sortBy: -1
+  }
+};
+
 (function gh12058() {
   const concat: Expression.ConcatArrays = {
     $concatArrays: [
