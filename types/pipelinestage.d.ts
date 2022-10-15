@@ -9,6 +9,7 @@ declare module 'mongoose' {
     | PipelineStage.CollStats
     | PipelineStage.Count
     | PipelineStage.Densify
+    | PipelineStage.Documents
     | PipelineStage.Facet
     | PipelineStage.GeoNear
     | PipelineStage.GraphLookup
@@ -88,6 +89,11 @@ declare module 'mongoose' {
           bounds: number[] | globalThis.Date[] | 'full' | 'partition'
         }
       }
+    }
+
+    export interface Documents {
+      /** [`$documents` reference](https://www.mongodb.com/docs/manual/reference/operator/aggregation/documents) */
+      $documents: ArrayExpression | VariableExpressionOperator;
     }
 
     export interface Facet {

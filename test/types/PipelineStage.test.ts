@@ -416,6 +416,31 @@ const stages4: PipelineStage[] = [
   }
 ];
 
+const documentsPipeline: PipelineStage[] = [
+  { $documents: [{ x: 10 }, { x: 2 }, { x: 5 }] }
+];
+
+const documentsPipelineLet: PipelineStage[] = [
+  {
+    $documents: {
+      $let: {
+        vars: {
+          users: { $push: '$user' }
+        },
+        in: {
+          $reduce: {
+            input: '$users',
+            initialValue: [],
+            in: {
+              $cond: { if: { $isArray: '$$this' }, then: '$$this', else: '$$this' }
+            }
+          }
+        }
+      }
+    }
+  }
+];
+
 (function gh12096() {
   const data: PipelineStage.AddFields = {
     $addFields: {
